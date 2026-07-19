@@ -21,6 +21,14 @@ def welcome_message():
     print("   Ready to generate your unbreakable password...        ")
     time.sleep(0.5)
     print("---------------------------------------------------------")
+def get_user_preferences():
+    # Gets the user's desired criteria for the password (length, characters, etc.)
+    length = input("How many characters would you like your password to be? ")
+    letters = input("How many letters should it contain? ")
+    numbers = input("How many numbers should it contain? ")
+    symbols = input("How many special characters (symbols) should it contain")
 
+    
+    
     
     
