@@ -1,6 +1,10 @@
 import random
 import time
 import string
+letters = string.ascii_letters
+numbers = string.digits
+symbols = string.punctuation
+password_list = []
 def welcome_message():
     """
     Displays the initial welcome message for Hector-PassGen.
@@ -23,11 +27,23 @@ def welcome_message():
     print("---------------------------------------------------------")
 def get_user_preferences():
     # Gets the user's desired criteria for the password (length, characters, etc.)
-    length = input("How many characters would you like your password to be? ")
-    letters = input("How many letters should it contain? ")
-    numbers = input("How many numbers should it contain? ")
-    symbols = input("How many special characters (symbols) should it contain")
-
+    letters_count = int(input("How many letters should it contain? "))
+    numbers_count = int(input("How many numbers should it contain? "))
+    symbols_count = int(input("How many special characters (symbols) should it contain? "))
+    return letters_count, numbers_count, symbols_count
+def generate_password(letters_count, numbers_count, symbols_count):
+    # Generates a secure, randomized password based on user-defined criteria
+    for _ in range(letters_count):
+        password_list.append(random.choice(letters))
+    for _ in range(numbers_count):
+        password_list.append(random.choice(numbers))
+    for _ in range(symbols_count):
+        password_list.append(random.choice(symbols))
+    random.shuffle(password_list)
+    password = "".join(password_list)
+        
+    
+    
     
     
     
