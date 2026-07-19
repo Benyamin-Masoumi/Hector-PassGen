@@ -69,6 +69,17 @@ def show(password):
     print(f"  GitHub: https://github.com/Benyamin-Masoumi/Hector-PassGen")
     time.sleep(0.5)
     print("="*50 + "\n")
+def main():
+    welcome_message()
+    letters_count, numbers_count, symbols_count = get_user_preferences()
+    password = generate_password(letters_count, numbers_count, symbols_count)
+    show(password)
+if __name__ == "__main__":
+    main()
+    
+    
+     
+    
     
     
     
