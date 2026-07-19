@@ -41,7 +41,39 @@ def generate_password(letters_count, numbers_count, symbols_count):
         password_list.append(random.choice(symbols))
     random.shuffle(password_list)
     password = "".join(password_list)
-        
+    return password
+version = "1.0.0"
+def show(password):
+    """
+    Displays the generated password to the user.
+    This function handles the UI presentation layer, ensuring the final output 
+    is formatted clearly for a better user experience.
+    """
+    for _ in range(2):
+       print("LOADING")
+       time.sleep(0.2)
+       print("LOADING.")
+       time.sleep(0.2)
+       print("LOADING..")
+       time.sleep(0.2)
+       print("LOADING...")
+       time.sleep(0.2)
+    print("\n" + "=" * 50)
+    time.sleep(0.5)
+    print(f"  >>> Generated Password: {password}")
+    time.sleep(0.5)
+    print("=" * 50)
+    time.sleep(0.5)
+    print(f"  Powered by Hector Tech | Version: {version}")
+    time.sleep(0.5)
+    print(f"  GitHub: https://github.com/Benyamin-Masoumi/Hector-PassGen")
+    time.sleep(0.5)
+    print("="*50 + "\n")
+    
+    
+    
+
+    
     
     
     
