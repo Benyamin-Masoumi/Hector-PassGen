@@ -59,11 +59,40 @@ def generate_password(letters_count, numbers_count, symbols_count):
     password = "".join(password_list)
     return password
 
+def evaluate_password_strength(password):
+    """
+    Evaluates the security level of the generated password based on its length
+    and character variety, returning a calculated percentage score and a security rating.
+    """
+    length = len(password)
+    if length == 0:
+        security_level = "Very Weak ❌"
+        return security_level
+    has_lower = any(c.islower() for c in password)
+    has_upper = any(c.isupper() for c in password)
+    has_digit = any(c.isdigit() for c in password)
+    has_symbol = any(c in symbols for c in password)
 
-version = "1.0.2"
+    diversity_score = sum([has_lower, has_upper, has_digit, has_symbol])
+
+    base_score = (length *3) + (diversity_score * 18)
+
+    percentage = min(base_score, 100)
+    if percentage >= 85:
+        security_level = "Highly Secure"
+    elif percentage >= 65:
+        security_level = "Strong 🔒"
+    elif percentage >= 40:
+        security_level = "Moderate ⚠️"
+    else:
+        security_level = "Weak ❌"
+    return security_level
 
 
-def show(password):
+version = "1.0.3 Beta"
+
+
+def show(password, security_level):
     """
     Displays the generated password to the user.
     This function handles the UI presentation layer, ensuring the final output 
@@ -81,6 +110,7 @@ def show(password):
     print("\n" + "=" * 50)
     time.sleep(0.5)
     print(f"  >>> Generated Password: {password}")
+    print(f"   >>> Security Rating: {security_level}")
     time.sleep(0.5)
     print("=" * 50)
     time.sleep(0.5)
@@ -99,7 +129,8 @@ def main():
     letters_count, numbers_count, symbols_count = get_user_preferences()
     password = generate_password(letters_count, numbers_count, symbols_count)
     pyperclip.copy(password)
-    show(password)
+    security_level = evaluate_password_strength(password)
+    show(password, security_level)
     
 
 if __name__ == "__main__":
